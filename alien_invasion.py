@@ -18,7 +18,9 @@ class AlienInvasion:
             (self.settings.screen_width, self.settings.screen_height)
         )
 
-        self.screen = pygame.display.set_mode((1200,800))# surface is the object assigned to self.screen
+        self.screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
+        self.settings.screen_width = self.screen.get_rect().screen_width
+        self.settings.screen_height = self.screen.get_rect().height
         pygame.display.set_caption("Alien Invasion")
         # giving argument of an instance of Alien invasion to Ship()
         # assigning Ship instance to self.ship
