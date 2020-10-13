@@ -35,16 +35,10 @@ class AlienInvasion:
             # separating run_game() for better managing separated events
             self._check_events()
             self.ship.update() #updates the ship moving right/left passed through the loop
-            self.bullets.update()
-
-            #Get rid of bullets that have disappeared.
-            for bullet in self.bullets.copy():
-                if bullet.rect.bottom <= 0:
-                    self.bullets.remove(bullet)
-            print(len(self.bullets))
-            
+            self._update_bullets()
             self._update_screen()
-                    
+
+                   
     def _check_events(self):        
         for event in pygame.event.get(): #event loop
             if event.type == pygame.QUIT:
@@ -77,7 +71,16 @@ class AlienInvasion:
             new_bullet = Bullet(self)
         #add() written specifically for Pygame groups == append()
             self.bullets.add(new_bullet)
+    
+    def _update_bullets(self): #to keep the AlienInvasion class reasonably well organized
+        '''update position of bullets and get rid of old bullets'''
+        # update bullet positions         
+        self.bullets.update()
 
+         #Get rid of bullets that have disappeared.
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
 
     def _update_screen(self):              
         self.screen.fill(self.settings.bg_color)
