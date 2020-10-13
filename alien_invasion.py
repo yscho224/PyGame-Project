@@ -25,7 +25,7 @@ class AlienInvasion:
         # giving argument of an instance of Alien invasion to Ship()
         # assigning Ship instance to self.ship
         self.ship = Ship(self) 
-        #setting the display mode. tuples -> dimensions of the game window
+        self.bullets = pygame.sprite.Group()
     def run_game(self):
         '''Start the main loop for the game.'''
         '''event - what user performs such as pressing a key or moving mouse'''
@@ -34,8 +34,9 @@ class AlienInvasion:
             # separating run_game() for better managing separated events
             self._check_events()
             self.ship.update() #updates the ship moving right/left passed through the loop
+            self.bullets.update()
             self._update_screen()
-            #Watch for keyboard and mouse events.
+                    
     def _check_events(self):        
         for event in pygame.event.get(): #event loop
             if event.type == pygame.QUIT:
