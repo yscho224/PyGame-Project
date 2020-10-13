@@ -37,6 +37,11 @@ class AlienInvasion:
         for event in pygame.event.get(): #event loop
             if event.type == pygame.QUIT:
                 sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    #Move the ship to the right.
+                    #moves the image(rectangle) on the screen
+                    self.ship.rect.x += 1
     def _update_screen(self):              
         self.screen.fill(self.settings.bg_color)
         self.ship.blitme() 
