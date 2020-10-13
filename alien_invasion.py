@@ -73,9 +73,10 @@ class AlienInvasion:
 
     def _fire_bullet(self):
         '''create a new bullet and add it to the bullets group'''
-        new_bullet = Bullet(self)
+        if len(self.bullets) < self.settings.bullets_allowed:
+            new_bullet = Bullet(self)
         #add() written specifically for Pygame groups == append()
-        self.bullets.add(new_bullet)
+            self.bullets.add(new_bullet)
 
 
     def _update_screen(self):              
