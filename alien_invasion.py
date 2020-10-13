@@ -43,9 +43,14 @@ class AlienInvasion:
                     #Move the ship to the right.
                     #moves the image(rectangle) on the screen
                     self.ship.moving_right = True
-            elif even.type == pygame.KEYUP: #KEYUP = releasing the key
-                if even.key == pygame.K_RIGHT:
+                elif event.key == pygame.K_LEFT:
+                    self.ship.moving_left = True  
+            elif event.type == pygame.KEYUP: #KEYUP = releasing the key
+                if event.key == pygame.K_RIGHT:
                     self.ship.moving_right = False
+                elif event.key == pygame.K_LEFT:
+                    self.ship.moving_left = False
+                
     def _update_screen(self):              
         self.screen.fill(self.settings.bg_color)
         self.ship.blitme() 
