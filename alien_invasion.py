@@ -29,16 +29,21 @@ class AlienInvasion:
         '''event - what user performs such as pressing a key or moving mouse'''
         '''to make program respond to events'''
         while True:
+            # separating run_game() for better managing separated events
+            self._check_events() 
+            self._update_screen()
             #Watch for keyboard and mouse events.
-            for event in pygame.event.get(): #event loop
-                if event.type == pygame.QUIT:
-                    sys.exits()
-            self.screen.fill(self.settings.bg_color)
-            self.ship.blitme() 
-            #Make the most recently drawn screen visible
-            pygame.display.flip() #flip() continually updates the display to show the new positions of game elements
-                                  # and hide the old ones. 
-                                  # make the most recently drawn screen visible.
+    def _check_events(self):        
+        for event in pygame.event.get(): #event loop
+            if event.type == pygame.QUIT:
+                sys.exit()
+    def _update_screen(self):              
+        self.screen.fill(self.settings.bg_color)
+        self.ship.blitme() 
+        #Make the most recently drawn screen visible
+        pygame.display.flip() #flip() continually updates the display to show the new positions of game elements
+                                # and hide the old ones. 
+                                # make the most recently drawn screen visible.
 if __name__ == '__main__':
     #make a game instance, and run the game
     #only runs if the file is called directly
