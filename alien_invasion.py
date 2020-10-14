@@ -124,16 +124,22 @@ class AlienInvasion:
         #add() written specifically for Pygame groups == append()
             self.bullets.add(new_bullet)
     
+    #update method
     def _update_bullets(self): #to keep the AlienInvasion class reasonably well organized
         '''update position of bullets and get rid of old bullets'''
         # update bullet positions         
         self.bullets.update()
 
          #Get rid of bullets that have disappeared.
+         #B/C we can't remove items from a list or group
+         #within a for loop, make a copy()!!
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
-        
+
+        self._check_bullet_alien_collisions()
+    
+    def _check_bullet_alien_collisions(self):
         #Check for any bullets that have hit aliens
         #If so, get rid of the bullet and the alien.
         #Compares the positions of all the bullets and aliens
