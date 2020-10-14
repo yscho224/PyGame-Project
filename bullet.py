@@ -8,7 +8,7 @@ class Bullet(Sprite):
 
     def __init__(self, ai_game):
         '''create a bullet object at the ship's current position'''
-        super().__init__() #super() interit properly from sprite
+        super().__init__() #super() inherit properly from sprite
         self.screen = ai_game.screen
         self.settings = ai_game.settings
         self.color = self.settings.bullet_color
