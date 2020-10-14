@@ -88,9 +88,12 @@ class AlienInvasion:
         while True:
             # separating run_game() for better managing separated events
             self._check_events()
-            self.ship.update() #updates the ship moving right/left passed through the loop
-            self._update_bullets()
-            self._update_aliens()
+            
+            if self.stats.game_active:
+                self.ship.update() #updates the ship moving right/left passed through the loop
+                self._update_bullets()
+                self._update_aliens()
+            
             self._update_screen()
             
 
