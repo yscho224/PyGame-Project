@@ -51,7 +51,7 @@ class AlienInvasion:
         # Create the full fleet of aliens.
         for row_number in range(number_rows):
             #create the first row of aliens
-            for alien_number in range(number_aliens_x) 
+            for alien_number in range(number_aliens_x):
                 self._create_alien(alien_number, row_number)
     
     def _create_alien(self, alien_number, row_number):
@@ -73,7 +73,9 @@ class AlienInvasion:
             self._check_events()
             self.ship.update() #updates the ship moving right/left passed through the loop
             self._update_bullets()
+            self._update_aliens()
             self._update_screen()
+            
 
                    
     def _check_events(self):        
@@ -118,6 +120,10 @@ class AlienInvasion:
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
+
+    def _update_aliens(self):
+        '''Update the positions of all aliens in the fleet'''
+        self.aliens.update() #update on aliens group
 
     def _update_screen(self):              
         self.screen.fill(self.settings.bg_color)
