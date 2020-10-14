@@ -26,7 +26,7 @@ class AlienInvasion:
         pygame.display.set_caption("Alien Invasion")
 
         #Create an instance to store game statistics.
-        self.status = GameStats(self)
+        self.stats = GameStats(self)
         # giving argument of an instance of Alien invasion to Ship()
         # assigning Ship instance to self.ship
         self.ship = Ship(self) 
@@ -192,7 +192,7 @@ class AlienInvasion:
     
     def _check_aliens_bottom(self):
         '''check if any aliens have reached the bottom of the screen.'''
-        screen_rect = self.screen.get_Rect()
+        screen_rect = self.screen.get_rect()
         for alien in self.aliens.sprites():
             if alien.rect.bottom >= screen_rect.bottom:
                 #Treat this the same as if the ship got hit.
