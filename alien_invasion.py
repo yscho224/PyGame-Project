@@ -5,6 +5,7 @@ import pygame
 from settings import Settings
 from ship import Ship # (calling class Ship from ship.py)
 from bullet import Bullet
+from alien import Alien
 
 class AlienInvasion:
 #overall class to manage game assets and behavior
@@ -27,6 +28,20 @@ class AlienInvasion:
         self.ship = Ship(self) 
         # assigning 'Group bullet' instance to self.bullet
         self.bullets = pygame.sprite.Group()
+        # assigning 'Alien instance group to self.aliens
+        self.aliens = pygame.sprite.Group()
+        
+        self._create_fleet()
+    
+    
+    def _create_fleet(self): #create a group to hold the fleet of aliens
+        '''create the fleet of aliens.'''
+        #make an alien.
+        alien = Alien(self)
+        self.aliens.add(alien)
+
+
+
     def run_game(self):
         '''Start the main loop for the game.'''
         '''event - what user performs such as pressing a key or moving mouse'''
@@ -87,6 +102,7 @@ class AlienInvasion:
         self.ship.blitme() 
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
+        self.aliens.draw(self.screen) #Pygame draws each element in the group at the position defined by rect attribute.
         #Make the most recently drawn screen visible
         pygame.display.flip() #flip() continually updates the display to show the new positions of game elements
                                 # and hide the old ones. 
