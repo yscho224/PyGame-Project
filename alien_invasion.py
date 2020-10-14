@@ -1,8 +1,9 @@
 import sys # module that provides all the info/functions 
            # related to the python interpreter
-
+from time import sleep #import sleep() to pause the game for a moment when the ship is hit
 import pygame
 from settings import Settings
+from game_stats import GameStats
 from ship import Ship # (calling class Ship from ship.py)
 from bullet import Bullet
 from alien import Alien
@@ -23,6 +24,9 @@ class AlienInvasion:
         self.settings.screen_width = self.screen.get_rect().width
         self.settings.screen_height = self.screen.get_rect().height
         pygame.display.set_caption("Alien Invasion")
+
+        #Create an instance to store game statistics.
+        self.status = GameStats(self)
         # giving argument of an instance of Alien invasion to Ship()
         # assigning Ship instance to self.ship
         self.ship = Ship(self) 
@@ -162,7 +166,21 @@ class AlienInvasion:
         #spritecollideany() look for collision
         #if there aren't any, if statement won't execute
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
-            print("Ship hit!!!")
+            print("Ship hit!!!") #didn't replace it
+            self._ship_hit()
+    
+    def _ship_hit(self):
+        '''Respond to the ship being hit by an alien'''
+        #Decrement ships_left.
+        self.stats.ships_left -= 1
+        #Get rid of any remaining aliens and bullets.
+        self.aliens.empty()
+        self.bullets.empty()
+        #Create a new fleet and center the ship.
+        self._create_fleet()
+        self.ship.center_ship() 
+        #Pause
+        sleep(0.5)
     def _update_screen(self):              
         self.screen.fill(self.settings.bg_color)
         self.ship.blitme() 

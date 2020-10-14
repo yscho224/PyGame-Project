@@ -14,7 +14,7 @@ class Settings:
         
         #Ship Settings
         self.ship_speed = 1.5 #1.5 pixels rather than 1 pixel
-
+        self.ship_limit = 3
         #Bullet Settings
         self.bullet_speed = 1.5
         self.bullet_width = 3
