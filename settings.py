@@ -24,3 +24,7 @@ class Settings:
 
         #Alien settings
         self.alien_speed = 1.0
+        self.alien_drop_speed = 10
+        # fleet_direction of 1 represents right; -1 represents left.
+        # using numbers 1, -1 better b/c makes sense that it addes/subtracts to each alien's x coordinate value
+        self.fleet_direction = 1
