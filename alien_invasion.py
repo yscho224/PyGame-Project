@@ -63,6 +63,19 @@ class AlienInvasion:
         alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
         self.aliens.add(alien)
 
+    def _check_fleet_edges(self): #check whether any aliens are at the left or right edge
+        '''Respond appropriately if any aliens have reached an edge'''
+        for alien in self.aliens.sprites():
+            if alien.check_edges():
+                self._change_fleet_direction()
+                break #break out the loop
+    
+    def _change_fleet_direction(self):
+        '''Drop the entire fleet and change the fleet's direction'''
+        for alien in self.aliens.sprites():
+            alien.rect.y += self.settings.fleet_drop_speed #origin is top left corner so y-coordinate increases when goes down
+        self.settings.fleet_direction *= -1 #move left
+
 
     def run_game(self):
         '''Start the main loop for the game.'''
@@ -123,6 +136,7 @@ class AlienInvasion:
 
     def _update_aliens(self):
         '''Update the positions of all aliens in the fleet'''
+        self._check_fleet_edges()
         self.aliens.update() #update on aliens group
 
     def _update_screen(self):              
