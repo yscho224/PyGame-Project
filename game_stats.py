@@ -10,6 +10,9 @@ class GameStats:
         '''initialize statistics that can change during the game'''
         self.ships_left = self.settings.ship_limit
 
+    #start Alien invasion in an active state.
+    self.game_active = True
+
 
 
 
