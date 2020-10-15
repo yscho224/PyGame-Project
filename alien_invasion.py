@@ -8,6 +8,7 @@ from ship import Ship # (calling class Ship from ship.py)
 from bullet import Bullet
 from alien import Alien
 from button import Button
+from scoreboard import Scoreboard
 
 class AlienInvasion:
 #overall class to manage game assets and behavior
@@ -25,9 +26,11 @@ class AlienInvasion:
         self.settings.screen_width = self.screen.get_rect().width
         self.settings.screen_height = self.screen.get_rect().height
         pygame.display.set_caption("Alien Invasion")
-
+        
         #Create an instance to store game statistics.
+        # and create a scoreboard
         self.stats = GameStats(self)
+        self.sb = Scoreboard(self)
         # giving argument of an instance of Alien invasion to Ship()
         # assigning Ship instance to self.ship
         self.ship = Ship(self) 
@@ -237,7 +240,8 @@ class AlienInvasion:
             bullet.draw_bullet()
         self.aliens.draw(self.screen) #Pygame draws each element in the group at the position defined by rect attribute.
         #Make the most recently drawn screen visible
-
+        #Draw the score information.
+        self.sb.show_score() 
         #Draw the play button if the game is inactive
         if not self.stats.game_active:
             self.play_button.draw_button()
