@@ -137,6 +137,7 @@ class AlienInvasion:
             self.settings.initialize_dynamic_settings()
             self.stats.reset_stats()
             self.sb.prep_score() # resetting score to 0 after resetting the game stats when starting new game.
+            self.sb.prep_level() # display level 
             pygame.mouse.set_visible(False)
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:
@@ -193,12 +194,15 @@ class AlienInvasion:
         
         
         #Repopulating the Fleet
-        if not self.aliens:
+        if not self.aliens: #cleared all aliens!!
             #Destroy existing bullets and create new fleet.
             self.bullets.empty()
             self._create_fleet()
             self.settings.increase_speed()
-    
+        
+            #Increase level
+            self.stats.level += 1
+            self.sb.prep_level() #displays new level correctly. 
     def _update_aliens(self):
         '''Update the positions of all aliens in the fleet'''
         self._check_fleet_edges()
