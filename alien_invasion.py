@@ -132,6 +132,7 @@ class AlienInvasion:
         if button_clicked and not self.stats.game_active:
             #Reset the game statistics.
             self.stats.reset_stats()
+            pygame.mouse.set_visible(False)
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:
             #Move the ship to the right.
@@ -214,6 +215,7 @@ class AlienInvasion:
             sleep(0.5)
         else:
             self.stats.game_active = False
+            pygame.mouse.set_visible(True)
     
     def _check_aliens_bottom(self):
         '''check if any aliens have reached the bottom of the screen.'''
