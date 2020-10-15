@@ -136,6 +136,7 @@ class AlienInvasion:
             #Reset the game statistics.
             self.settings.initialize_dynamic_settings()
             self.stats.reset_stats()
+            self.sb.prep_score() # resetting score to 0 after resetting the game stats when starting new game.
             pygame.mouse.set_visible(False)
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:
