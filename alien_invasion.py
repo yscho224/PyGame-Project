@@ -216,6 +216,7 @@ class AlienInvasion:
         #Draw the play button if the game is inactive
         if not self.stats.game_active:
             self.play_button.draw_button()
+        
         pygame.display.flip() #flip() continually updates the display to show the new positions of game elements
                                 # and hide the old ones. 
                                 # make the most recently drawn screen visible.

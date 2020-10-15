@@ -14,6 +14,9 @@ class GameStats:
     # game_active flag
         self.game_active = True
 
+    #Start game in an inactive state
+        self.game_active = False
+
 
 
 
