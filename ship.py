@@ -1,9 +1,10 @@
 import pygame
-
-class Ship:
+from pygame.sprite import Sprite
+class Ship(Sprite): #import from sprite
     #class to manage the ship
     def __init__(self, ai_game):
         #initialize the ship and set its starting position
+        super().__init__() #properly inherit from sprite
         # ai_game gives ship access to alien invasion object
         self.screen = ai_game.screen#self.screen = object called surface
         self.settings = ai_game.settings

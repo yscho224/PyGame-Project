@@ -137,7 +137,8 @@ class AlienInvasion:
             self.settings.initialize_dynamic_settings()
             self.stats.reset_stats()
             self.sb.prep_score() # resetting score to 0 after resetting the game stats when starting new game.
-            self.sb.prep_level() # display level 
+            self.sb.prep_level() # display level
+            self.sb.prep_ships() 
             pygame.mouse.set_visible(False)
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:
@@ -221,7 +222,9 @@ class AlienInvasion:
         '''Respond to the ship being hit by an alien'''
         #Decrement ships_left.
         if self.stats.ships_left > 0: 
+            #Decrement ships_left, and update scoreboard.
             self.stats.ships_left -= 1
+            self.sb.prep_ships()
             #Get rid of any remaining aliens and bullets.
             self.aliens.empty()
             self.bullets.empty()
