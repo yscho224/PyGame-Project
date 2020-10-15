@@ -111,6 +111,14 @@ class AlienInvasion:
                  
             elif event.type == pygame.KEYUP: #KEYUP = releasing the key
                 self._check_keyup_events(event)
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos() #returns a tuple containing the mouse cursor's x and y coordinates
+                self._check_play_button(mouse_pos)
+    
+    def _check_play_button(self, mouse_pos):
+        '''start a new game when the player clicks play'''
+        if self.play_button.rect.collidepoint(mouse_pos):
+            self.stats.game_active = True
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:
             #Move the ship to the right.
