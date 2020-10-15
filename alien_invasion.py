@@ -7,6 +7,7 @@ from game_stats import GameStats
 from ship import Ship # (calling class Ship from ship.py)
 from bullet import Bullet
 from alien import Alien
+from button import Button
 
 class AlienInvasion:
 #overall class to manage game assets and behavior
@@ -36,6 +37,9 @@ class AlienInvasion:
         self.aliens = pygame.sprite.Group()
         
         self._create_fleet()
+
+        #Make the play button
+        self.play_button = Button(self, "Play")
     
     # refactoring makes it easier to add new rows and create an entier fleet
     def _create_fleet(self): #create a group to hold the fleet of aliens
@@ -208,6 +212,10 @@ class AlienInvasion:
             bullet.draw_bullet()
         self.aliens.draw(self.screen) #Pygame draws each element in the group at the position defined by rect attribute.
         #Make the most recently drawn screen visible
+
+        #Draw the play button if the game is inactive
+        if not self.stats.game_active:
+            self.play_button.draw_button()
         pygame.display.flip() #flip() continually updates the display to show the new positions of game elements
                                 # and hide the old ones. 
                                 # make the most recently drawn screen visible.
