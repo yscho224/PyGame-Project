@@ -127,6 +127,11 @@ class AlienInvasion:
             #create a new fleet and center the ship.
             self._create_fleet()
             self.ship.center_ship()
+        #set the game to start only when game_active is False.
+        button_clicked = self.play_button.rect.collidepoint(mouse_pos)
+        if button_clicked and not self.stats.game_active:
+            #Reset the game statistics.
+            self.stats.reset_stats()
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:
             #Move the ship to the right.
